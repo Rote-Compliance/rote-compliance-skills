@@ -15,6 +15,7 @@ Use standalone for quick assessments. Use with [Rote](https://rotelabs.co) for a
 | [risk-assessment](skills/risk-assessment/SKILL.md) | Framework-directable risk assessment with 3x3 likelihood/impact matrix and risk treatment options |
 | [baa-review](skills/baa-review/SKILL.md) | HIPAA Business Associate Agreement clause-by-clause compliance review |
 | [compliance-qa](skills/compliance-qa/SKILL.md) | RAG-enhanced Q&A with regulatory interpretation guardrails and escalation triggers |
+| [compliance-posture-intake](skills/compliance-posture-intake/SKILL.md) | Guided HIPAA compliance posture assessment combining self-reported answers with inline document analysis |
 | [control-assessment](skills/control-assessment/SKILL.md) | Individual framework control assessment with evidence extraction and gap classification |
 | [framework-mapping](skills/framework-mapping/SKILL.md) | Bidirectional document-to-control mapping with relevance scoring |
 | [hipaa-gap-analysis](skills/hipaa-gap-analysis/SKILL.md) | HIPAA Security/Privacy Rule gap analysis with confidence scoring |
