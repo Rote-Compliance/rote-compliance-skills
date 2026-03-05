@@ -1,0 +1,125 @@
+{
+  "baa_title": "Business Associate Agreement - Acme Cloud Services",
+  "covered_entity": "Northside Health System",
+  "business_associate": "Acme Cloud Services, Inc.",
+  "analysis_date": "2026-02-25",
+  "summary": {
+    "total_provisions": 9,
+    "compliant": 5,
+    "deficient": 3,
+    "missing": 1,
+    "overall_risk": "high"
+  },
+  "findings": [
+    {
+      "provision_id": "164.504(e)(2)(i)",
+      "provision_name": "Permitted Uses and Disclosures",
+      "status": "compliant",
+      "baa_clause_reference": "Section 2",
+      "baa_text_excerpt": "Business Associate shall not use or disclose PHI other than as permitted or required by this Agreement or as required by law. Business Associate shall not use or disclose PHI in a manner that would violate Subpart E of 45 CFR Part 164 if done by the Covered Entity.",
+      "gap_description": null,
+      "risk_level": "low",
+      "recommendations": [],
+      "reasoning": "Section 2 clearly establishes the boundaries for PHI use and disclosure. The language mirrors the regulatory requirement by explicitly referencing the Privacy Rule (Subpart E) and prohibiting uses that would violate the Rule if performed by the Covered Entity."
+    },
+    {
+      "provision_id": "164.504(e)(2)(ii)(A)",
+      "provision_name": "Safeguards",
+      "status": "compliant",
+      "baa_clause_reference": "Section 3",
+      "baa_text_excerpt": "Business Associate shall use appropriate safeguards, and comply with Subpart C of 45 CFR Part 164 with respect to electronic PHI, to prevent use or disclosure of PHI other than as provided for by this Agreement.",
+      "gap_description": null,
+      "risk_level": "low",
+      "recommendations": [],
+      "reasoning": "The safeguards provision directly references Security Rule compliance (Subpart C) and requires appropriate safeguards. The language is specific and enforceable."
+    },
+    {
+      "provision_id": "164.504(e)(2)(ii)(B-C)",
+      "provision_name": "Breach Reporting",
+      "status": "deficient",
+      "baa_clause_reference": "Section 5",
+      "baa_text_excerpt": "Business Associate shall report to Covered Entity any Security Incident or Breach of Unsecured PHI of which it becomes aware.",
+      "gap_description": "The clause does not specify a reporting timeline. HIPAA requires notification within 60 days of discovery per 164.410(a). Without a defined timeline, the obligation is unenforceable in practice. Additionally, the clause does not specify the content requirements for breach notifications (identification of affected individuals, description of the breach, mitigation steps).",
+      "risk_level": "critical",
+      "recommendations": [
+        "Add a specific timeline: 'Business Associate shall notify Covered Entity within [30] days of discovery of a Breach of Unsecured PHI'",
+        "Include content requirements: identification of affected individuals, nature of the PHI involved, recommended mitigation steps, and corrective actions taken",
+        "Define 'discovery' consistent with 45 CFR 164.404(a)(2)"
+      ],
+      "reasoning": "While the BAA acknowledges the breach reporting obligation, the absence of a timeline and content requirements renders the provision practically unenforceable. The HIPAA Breach Notification Rule (164.410) requires specific elements that are not reflected in this clause."
+    },
+    {
+      "provision_id": "164.504(e)(2)(ii)(D)",
+      "provision_name": "Subcontractor Requirements",
+      "status": "deficient",
+      "baa_clause_reference": "Section 6.2",
+      "baa_text_excerpt": "Business Associate shall ensure that any agents, including subcontractors, to whom it provides PHI agree to the same restrictions and conditions.",
+      "gap_description": "The clause requires subcontractors to 'agree to the same restrictions' but does not explicitly require written agreements (subcontractor BAAs). The 2013 Omnibus Rule requires Business Associates to enter into written BAAs with subcontractors.",
+      "risk_level": "high",
+      "recommendations": [
+        "Amend to explicitly require written agreements: 'Business Associate shall enter into a written agreement with any subcontractor that creates, receives, maintains, or transmits PHI on behalf of Business Associate'",
+        "Specify that subcontractor agreements must contain the same obligations as this BAA"
+      ],
+      "reasoning": "The clause addresses the spirit of 164.504(e)(2)(ii)(D) but lacks the specificity required by the 2013 Omnibus Rule. Without requiring written agreements, there is no mechanism to enforce the flow-down of obligations."
+    },
+    {
+      "provision_id": "164.504(e)(2)(ii)(E)",
+      "provision_name": "Access to PHI",
+      "status": "compliant",
+      "baa_clause_reference": "Section 7.1",
+      "baa_text_excerpt": "Business Associate shall make available PHI in a Designated Record Set to Covered Entity as necessary to satisfy Covered Entity's obligations under 45 CFR 164.524.",
+      "gap_description": null,
+      "risk_level": "low",
+      "recommendations": [],
+      "reasoning": "The access provision directly references 164.524 and establishes a clear obligation for the Business Associate to support the Covered Entity's compliance with the individual right of access."
+    },
+    {
+      "provision_id": "164.504(e)(2)(ii)(F)",
+      "provision_name": "Amendment of PHI",
+      "status": "compliant",
+      "baa_clause_reference": "Section 7.2",
+      "baa_text_excerpt": "Business Associate shall make PHI available for amendment and incorporate any amendments to PHI in accordance with 45 CFR 164.526.",
+      "gap_description": null,
+      "risk_level": "low",
+      "recommendations": [],
+      "reasoning": "The amendment provision is clear and references the correct regulatory section."
+    },
+    {
+      "provision_id": "164.504(e)(2)(ii)(G)",
+      "provision_name": "Accounting of Disclosures",
+      "status": "compliant",
+      "baa_clause_reference": "Section 7.3",
+      "baa_text_excerpt": "Business Associate shall make available the information required to provide an accounting of disclosures in accordance with 45 CFR 164.528.",
+      "gap_description": null,
+      "risk_level": "low",
+      "recommendations": [],
+      "reasoning": "The accounting provision properly references 164.528 and establishes the Business Associate's obligation to support disclosure accounting."
+    },
+    {
+      "provision_id": "164.504(e)(2)(ii)(H)",
+      "provision_name": "Government Access",
+      "status": "missing",
+      "baa_clause_reference": null,
+      "baa_text_excerpt": "",
+      "gap_description": "The BAA contains no provision requiring the Business Associate to make its internal practices, books, and records available to the Secretary of HHS for compliance determination purposes.",
+      "risk_level": "medium",
+      "recommendations": [
+        "Add: 'Business Associate shall make its internal practices, books, and records relating to the use and disclosure of PHI available to the Secretary of the Department of Health and Human Services for purposes of determining compliance with the HIPAA Rules.'"
+      ],
+      "reasoning": "This is a required provision under 164.504(e)(2)(ii)(H). While HHS retains enforcement authority regardless, the absence of this provision indicates incomplete BAA drafting and could complicate voluntary cooperation during an investigation."
+    },
+    {
+      "provision_id": "164.504(e)(2)(ii)(I)",
+      "provision_name": "Return/Destruction of PHI",
+      "status": "deficient",
+      "baa_clause_reference": "Section 10",
+      "baa_text_excerpt": "Upon termination of this Agreement, Business Associate shall return or destroy all PHI received from Covered Entity.",
+      "gap_description": "The clause does not address the scenario where return or destruction is not feasible. Per 164.504(e)(2)(ii)(I), if return or destruction is infeasible, the BAA must extend protections to the PHI and limit further uses and disclosures to those purposes that make return or destruction infeasible.",
+      "risk_level": "high",
+      "recommendations": [
+        "Add infeasibility clause: 'If return or destruction is not feasible, Business Associate shall extend the protections of this Agreement to the PHI and limit further uses and disclosures to those purposes that make return or destruction infeasible, for so long as Business Associate maintains such PHI.'"
+      ],
+      "reasoning": "The termination provision is incomplete. Many cloud service providers retain data in backups that cannot be selectively destroyed, making the infeasibility exception critical for practical enforceability."
+    }
+  ]
+}

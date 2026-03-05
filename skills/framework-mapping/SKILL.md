@@ -1,9 +1,11 @@
 ---
 name: framework-mapping
-description: |
-  Map document sections to compliance framework controls with confidence scoring.
-  Determines which controls are addressed by each document section and produces
-  a control-to-section mapping suitable for gap analysis.
+description: Bidirectional mapping between document sections and compliance framework controls with confidence scoring. Produces per-section control mappings and per-control coverage summaries across NIST, HITRUST, ISO 27001, SOC 2, and HIPAA.
+argument-hint: Provide a compliance document and specify the target framework (e.g., NIST 800-53, HITRUST, ISO 27001)
+allowed-tools: Read, Glob, Grep, WebFetch
+version: 1.0
+author: Rote Compliance
+license: Apache-2.0
 ---
 
 # Framework Mapping Skill

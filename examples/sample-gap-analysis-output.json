@@ -1,0 +1,80 @@
+{
+  "document_title": "Northside Health System Information Security Policy v3.2",
+  "analysis_date": "2026-02-25",
+  "framework": "HIPAA Security Rule (45 CFR Part 164)",
+  "summary": {
+    "total_controls": 5,
+    "covered": 2,
+    "partial": 2,
+    "gaps": 1
+  },
+  "findings": [
+    {
+      "control_id": "164.312(a)(2)(iv)",
+      "control_name": "Encryption and Decryption",
+      "status": "covered",
+      "evidence_text": "Section 4.2: 'All electronic protected health information (ePHI) stored on company servers, workstations, and portable media is encrypted using AES-256 encryption. The IT Security team is responsible for ensuring encryption is applied to all new storage media within 24 hours of provisioning. Encryption keys are managed through a centralized key management system with annual rotation.'",
+      "gap_description": null,
+      "recommendations": [],
+      "confidence": 0.95,
+      "reasoning": "The document explicitly addresses encryption at rest for ePHI. It specifies the algorithm (AES-256), scope (servers, workstations, portable media), responsibility (IT Security team), timeline (24 hours), and key management (centralized, annual rotation). All sub-requirements of the addressable specification are met."
+    },
+    {
+      "control_id": "164.312(a)(1)",
+      "control_name": "Access Control",
+      "status": "covered",
+      "evidence_text": "Section 3.1: 'Access to information systems containing ePHI is restricted to authorized users based on role-based access control (RBAC). Access requests require manager approval via the IT ticketing system. Access privileges are reviewed quarterly by system owners and adjusted or revoked as needed. Emergency access procedures are documented in Appendix C.'",
+      "gap_description": null,
+      "recommendations": [],
+      "confidence": 0.90,
+      "reasoning": "The document addresses the four implementation specifications of Access Control: unique user identification (implicit in RBAC), emergency access procedure (Appendix C), automatic logoff (not explicitly stated but RBAC implies session management), and encryption (covered separately in Section 4.2). The quarterly review adds ongoing governance."
+    },
+    {
+      "control_id": "164.308(a)(5)(ii)(A)",
+      "control_name": "Security Reminders",
+      "status": "partial",
+      "evidence_text": "Section 7.1: 'New employees receive security awareness training during onboarding. Annual refresher training is required for all workforce members.'",
+      "gap_description": "The document addresses initial and annual training but does not address ongoing security reminders between annual training cycles. No mention of periodic reminders, delivery method (email, posters, etc.), or content updates for emerging threats. The HIPAA Security Rule contemplates regular reminders, not just annual training events.",
+      "recommendations": [
+        "Implement periodic security reminders (e.g., monthly or quarterly) for all workforce members",
+        "Define the delivery method (email, intranet, meetings) and content requirements",
+        "Document the reminder schedule and track acknowledgment",
+        "Include content updates for emerging threats and recent incidents"
+      ],
+      "confidence": 0.80,
+      "reasoning": "The document demonstrates awareness of security training needs through its onboarding and annual program, but the HIPAA Security Rule requires ongoing reminders — not just periodic training events. The gap is in the frequency and format of ongoing awareness activities between annual training cycles."
+    },
+    {
+      "control_id": "164.308(a)(6)(ii)",
+      "control_name": "Response and Reporting",
+      "status": "partial",
+      "evidence_text": "Section 8.1: 'All suspected security incidents must be reported to the IT Security team immediately. The Security Officer will investigate and determine appropriate response actions.'",
+      "gap_description": "The document establishes a reporting obligation but lacks: (1) incident classification criteria (what constitutes a security incident), (2) response procedures and timelines for each severity level, (3) documentation requirements for incident investigation, (4) post-incident review process, and (5) breach notification procedures required under 164.410.",
+      "recommendations": [
+        "Define incident classification criteria with severity levels (e.g., P1-P4)",
+        "Document response procedures and timelines for each severity level",
+        "Establish incident documentation and evidence preservation requirements",
+        "Add post-incident review and lessons-learned process",
+        "Cross-reference breach notification procedures per 164.410"
+      ],
+      "confidence": 0.75,
+      "reasoning": "The document has the foundation of an incident response program (reporting channel, designated investigator) but lacks the procedural depth required by the Security Rule. The response and reporting implementation specification requires documented procedures, not just a reporting mechanism."
+    },
+    {
+      "control_id": "164.310(d)(1)",
+      "control_name": "Device and Media Controls",
+      "status": "gap",
+      "evidence_text": "",
+      "gap_description": "The document contains no policies or procedures for the receipt, removal, movement, or disposal of hardware and electronic media that contain ePHI. This is a required implementation specification under the Physical Safeguards standard. Missing: disposal procedures, media re-use procedures, accountability (tracking), and data backup/storage for media movement.",
+      "recommendations": [
+        "Develop a device and media controls policy covering disposal, re-use, accountability, and data backup/storage",
+        "Implement media sanitization procedures per NIST SP 800-88 guidelines",
+        "Create an inventory tracking system for all media containing ePHI",
+        "Establish procedures for media movement between facilities",
+        "Define retention and destruction schedules for media types"
+      ],
+      "confidence": 0.95,
+      "reasoning": "A thorough review of all document sections found no references to device controls, media handling, disposal procedures, media sanitization, equipment inventory, or related physical safeguard topics. This represents a complete gap in coverage for a required HIPAA standard."
+    }
+  ]
+}
