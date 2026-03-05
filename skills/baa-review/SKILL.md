@@ -1,11 +1,11 @@
 ---
-name: baa-review
-description: Clause-by-clause BAA analysis against 45 CFR 164.504(e)(2). Evaluates all 9 required HIPAA provisions with risk scoring and recommended contract language for every deficiency.
-argument-hint: Paste or attach your Business Associate Agreement for review
-allowed-tools: Read, Glob, Grep, WebFetch
-version: 1.0
-author: Rote Compliance
-license: Apache-2.0
+name: "baa-review"
+description: "Clause-by-clause BAA analysis against 45 CFR 164.504(e)(2). Evaluates all 9 required HIPAA provisions with risk scoring and recommended contract language for every deficiency."
+argument-hint: "Paste or attach your Business Associate Agreement for review"
+allowed-tools: "Read, Glob, Grep, WebFetch"
+version: "1.0"
+author: "Rote Compliance"
+license: "Apache-2.0"
 ---
 
 # BAA Review Skill

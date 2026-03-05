@@ -1,12 +1,12 @@
 ---
-name: risk-assessment
-description: Framework-directable information security risk assessment. Identifies threats, evaluates likelihood/impact via a 3x3 matrix, maps findings to any compliance framework, and recommends risk treatment options with prioritization guidance.
-argument-hint: Describe the system or environment to assess, optionally append a framework appendix (e.g., frameworks/nist-csf-2.0-controls.md)
-allowed-tools: Read, Glob, Grep, WebFetch
-version: 2.0
-default_framework: NIST CSF 2.0
-author: Rote Compliance
-license: Apache-2.0
+name: "risk-assessment"
+description: "Framework-directable information security risk assessment. Identifies threats, evaluates likelihood/impact via a 3x3 matrix, maps findings to any compliance framework, and recommends risk treatment options with prioritization guidance."
+argument-hint: "Describe the system or environment to assess, optionally append a framework appendix (e.g., frameworks/nist-csf-2.0-controls.md)"
+allowed-tools: "Read, Glob, Grep, WebFetch"
+version: "2.0"
+default_framework: "NIST CSF 2.0"
+author: "Rote Compliance"
+license: "Apache-2.0"
 ---
 
 # Information Security Risk Assessment Skill

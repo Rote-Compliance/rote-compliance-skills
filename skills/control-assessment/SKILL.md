@@ -1,11 +1,11 @@
 ---
-name: control-assessment
-description: Evaluate individual framework controls against organizational documentation with evidence extraction, severity classification, and remediation recommendations.
-argument-hint: Specify a control ID (e.g., AC-2, 164.312(a)(1)) and provide the document to assess
-allowed-tools: Read, Glob, Grep, WebFetch
-version: 1.0
-author: Rote Compliance
-license: Apache-2.0
+name: "control-assessment"
+description: "Evaluate individual framework controls against organizational documentation with evidence extraction, severity classification, and remediation recommendations."
+argument-hint: "Specify a control ID (e.g., AC-2, 164.312(a)(1)) and provide the document to assess"
+allowed-tools: "Read, Glob, Grep, WebFetch"
+version: "1.0"
+author: "Rote Compliance"
+license: "Apache-2.0"
 ---
 
 # Control Assessment Skill

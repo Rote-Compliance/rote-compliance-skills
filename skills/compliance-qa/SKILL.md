@@ -1,11 +1,11 @@
 ---
-name: compliance-qa
-description: Compliance-specific Q&A with regulatory interpretation guardrails, source attribution, confidence scoring, and escalation triggers when context is insufficient. Works standalone or RAG-enhanced with the Rote platform.
-argument-hint: Ask a compliance question, then provide document context when prompted
-allowed-tools: Read, Glob, Grep, WebFetch
-version: 1.0
-author: Rote Compliance
-license: Apache-2.0
+name: "compliance-qa"
+description: "Compliance-specific Q&A with regulatory interpretation guardrails, source attribution, confidence scoring, and escalation triggers when context is insufficient. Works standalone or RAG-enhanced with the Rote platform."
+argument-hint: "Ask a compliance question, then provide document context when prompted"
+allowed-tools: "Read, Glob, Grep, WebFetch"
+version: "1.0"
+author: "Rote Compliance"
+license: "Apache-2.0"
 ---
 
 # Compliance Q&A Assistant Skill

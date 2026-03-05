@@ -1,6 +1,6 @@
 ---
-name: compliance-posture-intake
-description: >
+name: "compliance-posture-intake"
+description: ">"
   Comprehensive HIPAA compliance posture assessment for agent and API contexts.
   Runs a structured intake covering all Seven Elements of an effective compliance
   program, chains hipaa-gap-analysis, baa-review, framework-mapping, compliance-qa,
@@ -9,11 +9,11 @@ description: >
   and a 30/60/90 day roadmap. Compatible with any agent context that has access
   to the rote-compliance-toolkit tools — via Claude Code plugin, Rote MCP server,
   or direct API integration.
-argument-hint: Start the compliance posture intake — answer orientation questions, then optionally provide documents for analysis
-allowed-tools: Read, Glob, Grep, WebFetch, WebSearch, Write
-version: 1.0
-author: Rote Compliance
-license: Apache-2.0
+argument-hint: "Start the compliance posture intake — answer orientation questions, then optionally provide documents for analysis"
+allowed-tools: "Read, Glob, Grep, WebFetch, WebSearch, Write"
+version: "1.0"
+author: "Rote Compliance"
+license: "Apache-2.0"
 ---
 
 # Compliance Posture Intake
