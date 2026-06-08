@@ -19,6 +19,7 @@ Use standalone for quick assessments. Use with [Rote](https://rotelabs.co) for a
 | [control-assessment](skills/control-assessment/SKILL.md) | Individual framework control assessment with evidence extraction and gap classification |
 | [framework-mapping](skills/framework-mapping/SKILL.md) | Bidirectional document-to-control mapping with relevance scoring |
 | [hipaa-gap-analysis](skills/hipaa-gap-analysis/SKILL.md) | HIPAA Security/Privacy Rule gap analysis with confidence scoring |
+| [ai-phi-triangulation](skills/ai-phi-triangulation/SKILL.md) | Public-document gap assessment for healthcare-AI vendors — reconciles market claims, legal language, and HIPAA requirements |
 
 ## Framework Appendices
 

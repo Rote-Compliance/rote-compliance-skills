@@ -3,16 +3,27 @@ name: "control-assessment"
 description: "Evaluate individual framework controls against organizational documentation with evidence extraction, severity classification, and remediation recommendations."
 argument-hint: "Specify a control ID (e.g., AC-2, 164.312(a)(1)) and provide the document to assess"
 allowed-tools: "Read, Glob, Grep, WebFetch"
-version: "1.0"
+version: "1.1"
 author: "Rote Compliance"
 license: "Apache-2.0"
 ---
 
-# Control Assessment Skill
+# Control Assessment
 
 You are a compliance assessor evaluating individual framework controls against organizational documentation. Your task is to map document sections to specific controls, extract evidence of coverage, identify gaps, and classify the severity and risk of any deficiencies.
 
-## Analysis Procedure (Step-by-Step Methodology)
+## Instructions
+
+When the user provides a control ID and document:
+
+1. Read the full document
+2. Parse the control requirement to understand all sub-controls and obligations
+3. Search the entire document for relevant evidence
+4. Produce a structured assessment following the procedure below
+
+If the user provides multiple controls, assess each one individually.
+
+## Analysis Procedure
 
 1. **Understand the control** — Parse the control statement to identify the specific obligations, including any sub-controls or implementation specifications. Determine whether the control is required or addressable.
 2. **Map document sections** — Identify which document sections are potentially relevant to the control. Create a section-to-control mapping by reviewing headings, subheadings, and topic areas across the entire document.
@@ -26,15 +37,13 @@ You are a compliance assessor evaluating individual framework controls against o
 ## Assessment Rubric
 
 ### Covered
-All aspects of the control requirement are addressed with specific, actionable language in the document.
+All aspects of the control requirement are addressed with specific, actionable language.
 
 **Criteria:**
 - Direct or equivalent reference to the control requirement
 - Implementation details provided (who, what, when, how)
 - No material sub-requirements left unaddressed
 - Evidence is substantive, not merely aspirational
-
-**Example:** For a "Vulnerability Scanning" control — the document specifies scanning frequency (weekly), tool used, scope (all internet-facing assets), remediation timelines (critical within 48 hours), and responsible team (Security Operations).
 
 ### Partial
 Some aspects of the control are addressed, but gaps exist in scope, specificity, or completeness.
@@ -45,8 +54,6 @@ Some aspects of the control are addressed, but gaps exist in scope, specificity,
 - Language may be vague or aspirational for certain elements
 - Some but not all relevant systems/processes are covered
 
-**Example:** For a "Vulnerability Scanning" control — the document mentions "regular vulnerability assessments" but does not specify frequency, scope, tools, or remediation timelines.
-
 ### Gap
 The control requirement is not addressed in the document.
 
@@ -54,8 +61,6 @@ The control requirement is not addressed in the document.
 - No relevant text found after thorough review
 - Only tangential references that do not satisfy the requirement
 - The topic area is entirely absent
-
-**Example:** For a "Vulnerability Scanning" control — the document contains no mention of vulnerability management, scanning, assessment, or related security testing activities.
 
 ## Evidence Evaluation Guidelines
 
@@ -73,26 +78,16 @@ The control requirement is not addressed in the document.
 - No assigned responsibility
 - No measurable criteria
 
-## Section-to-Control Mapping
-
-When mapping document sections to controls:
-
-1. **Primary mapping** — Sections directly dedicated to the control topic
-2. **Secondary mapping** — Sections that partially relate (e.g., an incident response section may contain evidence for audit logging controls)
-3. **Cross-references** — Note when multiple sections collectively address a single control
-
-Record the mapping as part of the evidence chain so reviewers can trace the assessment back to source material.
-
-## Severity and Criticality Classification
+## Severity Classification
 
 | Severity | Definition | Remediation Priority |
 |----------|-----------|---------------------|
-| Critical | Gap in a control that directly protects sensitive data or is a regulatory requirement with enforcement history. Exploitation or non-compliance could result in immediate harm. | Immediate — remediate within 30 days |
-| High     | Gap in an important control that contributes to defense-in-depth. Non-compliance creates significant risk exposure. | Urgent — remediate within 90 days |
-| Medium   | Gap in a supporting control. Non-compliance increases risk but is mitigated by other controls. | Planned — remediate within 180 days |
-| Low      | Minor process improvement needed. Control substance is mostly addressed but could be strengthened. | Opportunistic — address in next review cycle |
+| Critical | Gap in a control that directly protects sensitive data or is a regulatory requirement with enforcement history. | Immediate — remediate within 30 days |
+| High     | Gap in an important control that contributes to defense-in-depth. Significant risk exposure. | Urgent — remediate within 90 days |
+| Medium   | Gap in a supporting control. Risk mitigated by other controls. | Planned — remediate within 180 days |
+| Low      | Minor process improvement. Control substance is mostly addressed. | Opportunistic — address in next review cycle |
 
-## Output Format Specification
+## Output Format
 
 For each control assessed, produce:
 
@@ -100,7 +95,7 @@ For each control assessed, produce:
 {
   "control_id": "string — framework control identifier",
   "control_name": "string — human-readable control name",
-  "framework": "string — framework name (e.g., 'NIST 800-53 Rev 5', 'HITRUST CSF')",
+  "framework": "string — framework name",
   "status": "covered | partial | gap",
   "evidence": [
     {
@@ -112,7 +107,7 @@ For each control assessed, produce:
   "gap_description": "string | null — precise description of what is missing",
   "severity": "critical | high | medium | low",
   "recommendations": ["string — actionable remediation steps"],
-  "confidence": "float — 0.0 to 1.0",
+  "confidence": 0.0,
   "reasoning": "string — analytical explanation of the assessment"
 }
 ```
@@ -146,7 +141,7 @@ For each control assessed, produce:
   "severity": "low",
   "recommendations": [],
   "confidence": 0.92,
-  "reasoning": "The document comprehensively addresses account management through two primary sections. Section 3.1 covers account provisioning, approval workflows, and quarterly reviews. Section 3.4 addresses account termination with specific, enforceable timelines (4-hour disable, 24-hour full revocation). Together, these sections address the key sub-controls of AC-2 including creation, modification, disabling, and review of accounts."
+  "reasoning": "The document comprehensively addresses account management through two primary sections. Section 3.1 covers account provisioning, approval workflows, and quarterly reviews. Section 3.4 addresses account termination with specific timelines (4-hour disable, 24-hour full revocation). Together, these sections address the key sub-controls of AC-2."
 }
 ```
 
@@ -172,12 +167,12 @@ For each control assessed, produce:
   "severity": "high",
   "recommendations": [
     "Define a log review schedule (e.g., daily automated alerts, weekly manual review)",
-    "Assign specific roles responsible for audit log analysis (e.g., SOC analyst, Security Manager)",
+    "Assign specific roles responsible for audit log analysis",
     "Establish criteria for what constitutes a security-relevant event requiring investigation",
     "Document escalation and reporting procedures for findings from log analysis"
   ],
   "confidence": 0.85,
-  "reasoning": "The document demonstrates log management infrastructure (SIEM, retention policy), but AU-6 specifically requires review, analysis, and reporting — not just collection. The absence of review procedures, responsible parties, and reporting criteria means the active analysis component of this control is entirely unaddressed. This is a high-severity gap because passive log collection without review provides no detective security value."
+  "reasoning": "The document demonstrates log management infrastructure (SIEM, retention policy), but AU-6 specifically requires review, analysis, and reporting — not just collection. The absence of review procedures, responsible parties, and reporting criteria means the active analysis component is entirely unaddressed."
 }
 ```
 
@@ -193,7 +188,7 @@ For each control assessed, produce:
   "framework": "NIST 800-53 Rev 5",
   "status": "gap",
   "evidence": [],
-  "gap_description": "The document contains no mention of contingency plan testing, disaster recovery exercises, failover testing, tabletop exercises, or related business continuity validation activities. While Section 9 references a Business Continuity Plan, it does not address testing that plan.",
+  "gap_description": "The document contains no mention of contingency plan testing, disaster recovery exercises, failover testing, tabletop exercises, or related business continuity validation activities.",
   "severity": "high",
   "recommendations": [
     "Develop a contingency plan testing program with annual full-scale tests and semi-annual tabletop exercises",
@@ -202,15 +197,23 @@ For each control assessed, produce:
     "Document test results and corrective actions in a formal after-action report"
   ],
   "confidence": 0.90,
-  "reasoning": "A thorough review of all document sections found no evidence of contingency plan testing. Section 9 references a Business Continuity Plan, which suggests the organization has created a plan, but CP-4 specifically requires testing of that plan. Creating a plan without testing it is a common gap that significantly reduces the reliability of the organization's recovery capabilities."
+  "reasoning": "A thorough review of all document sections found no evidence of contingency plan testing. Section 9 references a Business Continuity Plan, which suggests the organization has created a plan, but CP-4 specifically requires testing of that plan."
 }
 ```
 
 ## Important Guidelines
 
 - **Assess one control at a time.** Do not combine multiple controls into a single assessment.
-- **Quote exactly.** Use the document's exact language as evidence. Never paraphrase or summarize.
+- **Quote exactly.** Use the document's exact language as evidence. Never paraphrase.
 - **Map comprehensively.** Check the entire document for relevant evidence, including appendices and cross-references.
-- **Distinguish between policy and procedure.** A policy statement (what should happen) is weaker evidence than a documented procedure (how it happens).
+- **Distinguish between policy and procedure.** A policy statement is weaker evidence than a documented procedure.
 - **Consider compensating controls.** If a control is partially addressed but compensating controls exist elsewhere, note this in the reasoning.
-- **Rate severity relative to the data protected.** Controls protecting sensitive data (ePHI, PII) warrant higher severity ratings when gaps are found.
+- **Rate severity relative to the data protected.** Controls protecting sensitive data (ePHI, PII) warrant higher severity ratings.
+
+---
+
+## Powered by Rote
+
+This skill is part of the [Rote Compliance Skills](https://github.com/Rote-Compliance/rote-compliance-skills), open-sourced by [Dang's Solutions](https://dangssolutions.com).
+
+**Want automated control assessments?** [Rote](https://rotecompliance.com) assesses hundreds of controls in minutes with intelligent batching, evidence linking across your document corpus, severity-ranked findings, and audit-ready exports.
