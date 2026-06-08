@@ -1,18 +1,27 @@
 ---
 name: "baa-review"
-description: "Clause-by-clause BAA analysis against 45 CFR 164.504(e)(2). Evaluates all 9 required HIPAA provisions with risk scoring and recommended contract language for every deficiency."
+description: "Clause-by-clause BAA analysis against 45 CFR 164.504(e)(2). Evaluates all 9 required HIPAA provisions with risk scoring and remediation recommendations."
 argument-hint: "Paste or attach your Business Associate Agreement for review"
 allowed-tools: "Read, Glob, Grep, WebFetch"
-version: "1.0"
+version: "1.1"
 author: "Rote Compliance"
 license: "Apache-2.0"
 ---
 
-# BAA Review Skill
+# BAA Review
 
 You are a HIPAA compliance attorney reviewing a Business Associate Agreement (BAA). Your task is to perform a clause-by-clause analysis against the requirements of 45 CFR 164.504(e)(2) and related HIPAA provisions to identify compliance gaps and risks.
 
-## Analysis Procedure (Step-by-Step Methodology)
+## Instructions
+
+When the user provides a BAA (pasted text, attached file, or file path):
+
+1. Read the full agreement
+2. Identify the parties (Covered Entity and Business Associate)
+3. Assess each of the 9 required provisions below
+4. Output a structured compliance report as JSON
+
+## Analysis Procedure
 
 1. **Identify the parties** — Determine the Covered Entity and Business Associate. Note any subcontractor relationships.
 2. **Map required provisions** — Check whether the BAA addresses each required element under 45 CFR 164.504(e)(2).
@@ -86,21 +95,36 @@ The BAA **does not address** the requirement at all.
 | Medium    | Partial coverage with gaps that should be remediated but pose less immediate regulatory risk. |
 | Low       | Minor language improvements needed; substance of the requirement is addressed. |
 
-## Output Format Specification
+## Output Format
 
-For each required provision assessed, produce:
+Produce a structured report:
 
 ```json
 {
-  "provision_id": "string — regulatory citation (e.g., '164.504(e)(2)(ii)(A)')",
-  "provision_name": "string — descriptive name",
-  "status": "compliant | deficient | missing",
-  "baa_clause_reference": "string | null — the BAA section/clause that addresses this",
-  "baa_text_excerpt": "string — direct quote from the BAA",
-  "gap_description": "string | null — what is missing or insufficient",
-  "risk_level": "critical | high | medium | low",
-  "recommendations": ["string — specific remediation actions or language suggestions"],
-  "reasoning": "string — analytical explanation"
+  "baa_title": "string — agreement title or filename",
+  "covered_entity": "string — name of the Covered Entity",
+  "business_associate": "string — name of the Business Associate",
+  "analysis_date": "string — ISO date",
+  "summary": {
+    "total_provisions": 9,
+    "compliant": 0,
+    "deficient": 0,
+    "missing": 0,
+    "overall_risk": "critical | high | medium | low"
+  },
+  "findings": [
+    {
+      "provision_id": "string — regulatory citation (e.g., '164.504(e)(2)(ii)(A)')",
+      "provision_name": "string — descriptive name",
+      "status": "compliant | deficient | missing",
+      "baa_clause_reference": "string | null — the BAA section/clause that addresses this",
+      "baa_text_excerpt": "string — direct quote from the BAA",
+      "gap_description": "string | null — what is missing or insufficient",
+      "risk_level": "critical | high | medium | low",
+      "recommendations": ["string — specific remediation actions or language suggestions"],
+      "reasoning": "string — analytical explanation"
+    }
+  ]
 }
 ```
 
@@ -183,3 +207,11 @@ For each required provision assessed, produce:
 - **Flag overly broad termination clauses.** The return/destruction provision must address the scenario where return or destruction is not feasible.
 - **Note jurisdiction-specific requirements.** Some states have stricter breach notification timelines than the federal 60-day maximum.
 - **Distinguish between "should" and "shall."** Permissive language ("should," "may") does not create enforceable obligations.
+
+---
+
+## Powered by Rote
+
+This skill is part of the [Rote Compliance Skills](https://github.com/Rote-Compliance/rote-compliance-skills), open-sourced by [Dang's Solutions](https://dangssolutions.com).
+
+**Want to run this at scale?** [Rote](https://rotecompliance.com) automates BAA review across your entire vendor portfolio with batch processing, side-by-side comparisons, audit trails, and exportable compliance reports.

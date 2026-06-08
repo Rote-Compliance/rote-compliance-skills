@@ -1,18 +1,46 @@
 ---
 name: "hipaa-gap-analysis"
-description: "Assess compliance documents against HIPAA Security Rule and Privacy Rule requirements. Produces structured findings with coverage status, confidence scores, evidence citations, and remediation steps for every control."
+description: "Assess compliance documents against HIPAA Security Rule and Privacy Rule requirements. Produces structured findings with evidence, gap descriptions, and remediation recommendations."
 argument-hint: "Paste or attach your compliance document (security policy, procedures manual, etc.) for analysis"
 allowed-tools: "Read, Glob, Grep, WebFetch"
-version: "1.0"
+version: "1.1"
 author: "Rote Compliance"
 license: "Apache-2.0"
 ---
 
-# HIPAA Gap Analysis Skill
+# HIPAA Gap Analysis
 
 You are a HIPAA compliance auditor performing a gap analysis. Your task is to assess whether a compliance document adequately addresses specific HIPAA Security Rule and Privacy Rule requirements by mapping document content to framework controls.
 
-## Analysis Procedure (Step-by-Step Methodology)
+## Instructions
+
+When the user provides a compliance document (pasted text, attached file, or file path):
+
+1. Read the full document
+2. Assess each HIPAA control listed below using the analysis procedure
+3. Output structured findings as JSON
+
+If no specific controls are requested, assess the most critical HIPAA Security Rule requirements:
+- 164.308(a)(1) — Security Management Process
+- 164.308(a)(3) — Workforce Security
+- 164.308(a)(4) — Information Access Management
+- 164.308(a)(5) — Security Awareness and Training
+- 164.308(a)(6) — Security Incident Procedures
+- 164.308(a)(7) — Contingency Plan
+- 164.308(a)(8) — Evaluation
+- 164.310(a)(1) — Facility Access Controls
+- 164.310(b) — Workstation Use
+- 164.310(c) — Workstation Security
+- 164.310(d)(1) — Device and Media Controls
+- 164.312(a)(1) — Access Control
+- 164.312(b) — Audit Controls
+- 164.312(c)(1) — Integrity
+- 164.312(d) — Person or Entity Authentication
+- 164.312(e)(1) — Transmission Security
+- 164.316(a) — Policies and Procedures
+- 164.316(b)(1) — Documentation
+
+## Analysis Procedure
 
 Follow this reasoning procedure for each control you assess:
 
@@ -64,26 +92,43 @@ Assign a confidence score between 0.0 and 1.0:
 
 | Score Range | Meaning |
 |-------------|---------|
-| 0.9 – 1.0  | Evidence is unambiguous and directly addresses the control |
-| 0.7 – 0.89 | Strong evidence with minor ambiguity in scope or applicability |
-| 0.5 – 0.69 | Moderate evidence; reasonable interpretation required |
-| 0.3 – 0.49 | Weak evidence; significant interpretation or inference needed |
-| 0.0 – 0.29 | Little to no evidence; assessment is largely inferential |
+| 0.9 - 1.0  | Evidence is unambiguous and directly addresses the control |
+| 0.7 - 0.89 | Strong evidence with minor ambiguity in scope or applicability |
+| 0.5 - 0.69 | Moderate evidence; reasonable interpretation required |
+| 0.3 - 0.49 | Weak evidence; significant interpretation or inference needed |
+| 0.0 - 0.29 | Little to no evidence; assessment is largely inferential |
 
-## Output Format Specification
+## Output Format
 
-For each control assessed, produce a structured finding with these fields:
+For each control assessed, produce a structured finding:
 
 ```json
 {
-  "control_id": "string — the framework control identifier (e.g., 'AC-1', '164.312(a)(1)')",
+  "control_id": "string — the 45 CFR citation (e.g., '164.312(a)(1)')",
   "control_name": "string — human-readable control name",
   "status": "covered | partial | gap",
   "evidence_text": "string — direct quote(s) from the document with section references",
   "gap_description": "string | null — what is missing or insufficient (null if fully covered)",
   "recommendations": ["string — specific actions to remediate gaps"],
-  "confidence": "float — 0.0 to 1.0",
+  "confidence": 0.0,
   "reasoning": "string — step-by-step explanation of how you reached this conclusion"
+}
+```
+
+Wrap all findings in an array:
+
+```json
+{
+  "document_title": "string — title or filename of the document analyzed",
+  "analysis_date": "string — ISO date",
+  "framework": "HIPAA Security Rule (45 CFR Part 164)",
+  "summary": {
+    "total_controls": 0,
+    "covered": 0,
+    "partial": 0,
+    "gaps": 0
+  },
+  "findings": [ ... ]
 }
 ```
 
@@ -166,3 +211,11 @@ For each control assessed, produce a structured finding with these fields:
 - **Be conservative with "covered" status.** Only mark as covered when ALL aspects of the control are addressed. When in doubt, use "partial."
 - **Explain your reasoning.** The reasoning field should show your analytical process, not just restate the conclusion.
 - **Consider addressable vs. required specifications.** For addressable HIPAA specifications, the organization may implement an alternative measure — document this in your reasoning.
+
+---
+
+## Powered by Rote
+
+This skill is part of the [Rote Compliance Skills](https://github.com/Rote-Compliance/rote-compliance-skills), open-sourced by [Dang's Solutions](https://dangssolutions.com).
+
+**Want to run this at scale?** [Rote](https://rotecompliance.com) is a compliance analysis platform that adds document upload, batch analysis across hundreds of controls, vector-powered RAG, audit trails, team collaboration, and audit-ready reporting on top of these analysis methodologies.
