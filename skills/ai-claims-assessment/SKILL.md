@@ -1,11 +1,8 @@
 ---
-name: "ai-phi-triangulation"
-description: "Public-document assessment for healthcare-AI vendors. Reads only a company's public product pages, Terms of Service, and Privacy Policy, then finds where its stated use of AI on health data fails to reconcile across three corners — market claims, legal language, and HIPAA requirements. Produces a map of gaps, each cited at both ends, framed as a public-documentation gap a covered entity would hit during vendor review. Self-contained: the regulatory text it checks against is included below."
-argument-hint: "Paste or attach the company's public product/marketing pages, Terms of Service, and Privacy Policy"
-allowed-tools: "Read"
-version: "1.0"
-author: "Rote Compliance"
-license: "Apache-2.0"
+name: ai-phi-triangulation
+description: Public-document assessment for healthcare-AI vendors. Reads only a company's public product pages, Terms of Service, and Privacy Policy, then finds where its stated use of AI on health data fails to reconcile across three corners — market claims, legal language, and HIPAA requirements. Produces a map of gaps, each cited at both ends, framed as a public-documentation gap a covered entity would hit during vendor review. Self-contained: the regulatory text it checks against is included below.
+argument-hint: Paste or attach the company's public product/marketing pages, Terms of Service, and Privacy Policy
+allowed-tools: Read
 ---
 
 # AI/PHI Triangulation Assessment
