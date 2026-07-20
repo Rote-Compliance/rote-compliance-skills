@@ -1,0 +1,14 @@
+{
+  "name": "rote-compliance-skills",
+  "owner": {
+    "name": "Rote Labs"
+  },
+  "plugins": [
+    {
+      "name": "rote-compliance-skills",
+      "displayName": "Rote Compliance",
+      "source": ".",
+      "description": "HIPAA and framework compliance skills for gap analysis, BAA review, risk assessment, control assessment, framework mapping, compliance Q&A, and posture intake. Open source, Apache 2.0."
+    }
+  ]
+}

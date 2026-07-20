@@ -1,0 +1,10 @@
+{
+  "name": "rote-compliance-skills",
+  "version": "1.0.1",
+  "description": "HIPAA and framework compliance skills: gap analysis, BAA review, risk assessment, control assessment, framework mapping, compliance Q&A, and posture intake. Standalone in any LLM, or use with the Rote platform for dynamic framework injection, document parsing, and persistent workspaces.",
+  "author": {
+    "name": "Rote Labs"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://rotecompliance.com"
+}
