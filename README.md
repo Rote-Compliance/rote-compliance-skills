@@ -24,6 +24,7 @@ Use standalone for quick assessments. Use with [Rote](https://rotecompliance.com
 | [ai-claims-assessment](skills/ai-claims-assessment/SKILL.md) | Reconciles a vendor's public AI/product claims against their legal language and HIPAA requirements |
 | [part-2-notice-assessment](skills/part-2-notice-assessment/SKILL.md) | Assesses 42 CFR Part 2 substance use disorder record notices for required elements |
 | [skill-router](skills/skill-router/SKILL.md) | Reads a document-discovery manifest and the skill catalog, and reasons about which skill(s) fit each discovered document |
+| [ai-tooling-inventory](skills/ai-tooling-inventory/SKILL.md) | Inventories the AI capability an organization actually runs across the five ways it enters, four of which leave no procurement transaction behind |
 
 ## Framework Appendices
 
@@ -85,7 +86,7 @@ Each skill in the table above has its own ClawHub listing — swap the slug for 
 
 ### As a Cowork / Claude Code Plugin
 
-This repo is also a Claude plugin — all twelve skills in `skills/` install as one package, no copy-pasting required.
+This repo is also a Claude plugin — all thirteen skills in `skills/` install as one package, no copy-pasting required.
 
 **Cowork:** browse and install from [claude.com/plugins](https://claude.com/plugins/), or add this repo directly.
 
