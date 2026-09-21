@@ -201,6 +201,27 @@ For each control assessed, produce:
 }
 ```
 
+## Vendor BAA Evidence
+
+When the evidence block includes a **"Vendor BAA Commitments"** section, you are evaluating whether:
+1. The organization's documentation (manual) establishes requirements for this control, **and**
+2. The vendor's BAA contractually commits to supporting this control.
+
+Apply these directionality rules:
+
+| Manual | BAA | Status |
+|--------|-----|--------|
+| Addresses control | BAA commits to it | **covered** |
+| Addresses control | BAA silent or vague | **partial** — note "BAA does not commit to [specific requirement]" |
+| No coverage | BAA commits to it | **partial** — note "manual lacks requirement; BAA commits on vendor side" |
+| No coverage | BAA silent | **gap** |
+
+In your reasoning, distinguish which evidence source(s) provide coverage. For example:
+> "The manual requires encryption of PHI in transit (Section 4.2). The vendor's BAA commits to using industry-standard encryption for all data in transit ([Safeguards] clause). Both documentation sources address this control — covered."
+
+Or for a gap:
+> "The manual requires background checks for personnel with access to PHI. The vendor's BAA contains no equivalent commitment for their workforce. The organization cannot verify vendor compliance with this control through the BAA — partial."
+
 ## Important Guidelines
 
 - **Assess one control at a time.** Do not combine multiple controls into a single assessment.
