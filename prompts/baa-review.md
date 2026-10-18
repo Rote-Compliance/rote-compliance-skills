@@ -26,6 +26,19 @@ You are a HIPAA compliance attorney reviewing a Business Associate Agreement (BA
 8. **Government Access** — 164.504(e)(2)(ii)(H): HHS access for compliance determination
 9. **Return/Destruction of PHI** — 164.504(e)(2)(ii)(I): Termination obligations
 
+## AI Vendor Addendum (only when the Business Associate provides AI functionality)
+
+If the Business Associate provides a language model, speech-to-text or text-to-speech, an AI agent or scribe, or AI features inside a larger product, also check these. They are not among the 9 required provisions, and for AI tools they decide most of the practical risk:
+
+1. **Plan or tier coverage** — Does the BAA cover the product tier the Covered Entity actually uses?
+2. **Training on customer data** — May PHI or customer data be used to train or improve models, and is any opt-out contractual rather than a product setting?
+3. **Retention of AI inputs and outputs** — How long are prompts, outputs, audio and transcripts kept, and does return/destruction at termination reach them and every subcontractor holding them?
+4. **Model and speech subprocessors** — Are the model, speech and telephony providers identified, bound by flow-down terms under 164.504(e)(2)(ii)(D), and subject to notice before changes?
+5. **Retrievable logs** — Can the Covered Entity obtain what the system was given and returned for a specific individual or encounter?
+6. **Breach notice through the chain** — Does the 164.410 timeline run from discovery by any subcontractor in the AI chain?
+
+Rate each `addressed | partial | silent` with the same risk levels, in a separate `ai_vendor_terms` list.
+
 ## Assessment Rubric
 
 - **Compliant**: Fully satisfies the requirement with clear, enforceable language

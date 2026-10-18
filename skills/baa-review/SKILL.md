@@ -3,7 +3,7 @@ name: "baa-review"
 description: "Clause-by-clause BAA analysis against 45 CFR 164.504(e)(2). Evaluates all 9 required HIPAA provisions with risk scoring and remediation recommendations."
 argument-hint: "Paste or attach your Business Associate Agreement for review"
 allowed-tools: "Read, Glob, Grep, WebFetch"
-version: "1.1"
+version: "1.2"
 author: "Rote Compliance"
 license: "Apache-2.0"
 ---
@@ -19,7 +19,8 @@ When the user provides a BAA (pasted text, attached file, or file path):
 1. Read the full agreement
 2. Identify the parties (Covered Entity and Business Associate)
 3. Assess each of the 9 required provisions below
-4. Output a structured compliance report as JSON
+4. If the Business Associate provides AI functionality (a language model, speech-to-text or text-to-speech, an AI agent or scribe, or AI features inside a larger product), also assess the AI Vendor Addendum section, when it is present
+5. Output a structured compliance report as JSON
 
 ## Analysis Procedure
 
@@ -60,6 +61,19 @@ Business Associate must make internal practices, books, and records relating to 
 
 ### 9. Return/Destruction of PHI — 164.504(e)(2)(ii)(I)
 Upon termination, Business Associate must return or destroy all PHI. If not feasible, the BAA must extend protections and limit further uses and disclosures.
+
+## AI Vendor Addendum (optional, v1.2)
+
+Assess these only when the Business Associate provides AI functionality. They are not among the nine required provisions, so they never change `total_provisions` or the `summary` counts; they go in the optional `ai_vendor_terms` array. An ordinary BAA review does not ask them, and for AI tools they decide most of the practical risk.
+
+1. **Plan or tier coverage.** Whether the BAA covers the product tier the Covered Entity actually uses. Several AI products offer a BAA only on enterprise or healthcare plans.
+2. **Training on customer data.** Whether PHI or customer data may be used to train or improve models, and whether any opt-out is contractual rather than a product setting.
+3. **Retention of AI inputs and outputs.** How long prompts, outputs, audio and transcripts are kept and by whom, and whether return or destruction at termination reaches them and every subcontractor holding them.
+4. **Model and speech subprocessors.** Whether the model, speech-to-text, text-to-speech and telephony providers are identified, bound by flow-down terms under 164.504(e)(2)(ii)(D), and subject to notice before changes.
+5. **Retrievable logs.** Whether the Covered Entity can obtain what the system was given and what it returned for a specific individual or encounter, to support access, accounting and incident response.
+6. **Breach notice through the chain.** Whether the reporting timeline under 164.410 runs from discovery by any subcontractor in the AI chain, not only by the Business Associate.
+
+Rate each `addressed | partial | silent`, with the same `risk_level` scale.
 
 ## Assessment Rubric
 
@@ -124,9 +138,20 @@ Produce a structured report:
       "recommendations": ["string — specific remediation actions or language suggestions"],
       "reasoning": "string — analytical explanation"
     }
+  ],
+  "ai_vendor_terms": [
+    {
+      "term": "tier_coverage | training_on_data | retention | ai_subprocessors | retrievable_logs | chain_breach_notice",
+      "status": "addressed | partial | silent",
+      "baa_text_excerpt": "string | null",
+      "risk_level": "critical | high | medium | low",
+      "recommendation": "string"
+    }
   ]
 }
 ```
+
+`ai_vendor_terms` is present only when the Business Associate provides AI functionality; omit it otherwise. Consumers of v1.1 output can ignore it.
 
 ## Few-Shot Examples
 
