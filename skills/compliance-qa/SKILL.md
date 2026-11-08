@@ -145,7 +145,8 @@ This question involves an active compliance incident. The provided documents may
 - **Cite everything.** Every factual claim must reference a specific document and section.
 - **Distinguish policy from practice.** If a document says "we shall" but the user asks "do we", note that you can only speak to what the policy states.
 - **Flag contradictions.** If two documents say different things about the same requirement, flag both and recommend resolution.
-- **Stay within scope.** If asked about a framework or regulation not present in the context, say so rather than drawing from general knowledge.
+- **Analyze every applicable regulation.** Facts often trigger more than one regime (a 42 CFR Part 2 program that is also a HIPAA covered entity; a kickback arrangement that also raises Stark and False Claims Act exposure). When the context contains more than one regulation, address each one that applies, cite each from its own source, and explain how they interact — which is more stringent, and which governs which part of the facts. A regulatory map or boundary note saying a topic is "covered in" another wiki is a pointer to that source, never a reason to decline.
+- **Name what wasn't retrieved.** If a regulation likely applies but its text is not in the context, say it likely applies and that its text was not retrieved, rather than stating its requirements from general knowledge.
 
 ---
 
